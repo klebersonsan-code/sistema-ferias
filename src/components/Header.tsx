@@ -3,10 +3,11 @@ import { LogOut, Users, LayoutDashboard } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import NotificationsBell from "./NotificationsBell";
 
 export default function Header() {
   const router = useRouter();
-  const [user, setUser] = useState<{ nome: string; perfil: string } | null>(null);
+  const [user, setUser] = useState<{ nome: string; perfil: string; matricula?: string } | null>(null);
 
   useEffect(() => {
     const data = localStorage.getItem("userData");
@@ -50,6 +51,8 @@ export default function Header() {
             </Link>
           </nav>
         )}
+
+        <NotificationsBell user={user} />
 
         <button 
           onClick={handleLogout}
